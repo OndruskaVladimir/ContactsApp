@@ -86,7 +86,24 @@ public class Controller {
 
     @FXML
     public void deleteContactHandle(ActionEvent actionEvent) {
+        Contact selectedContact = myTable.getSelectionModel().getSelectedItem();
+        if(selectedContact == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("No contact selected");
+            alert.setHeaderText(null);
+            alert.setContentText("You did not choose any contact to delete");
+            alert.showAndWait();
+            return;
+        }
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete contact?");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete contact " + selectedContact.getFirstName() + " " + selectedContact.getLastName());
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            ContactData.getInstance().deleteContact(selectedContact);
+        }
     }
 
     @FXML
