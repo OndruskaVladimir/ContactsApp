@@ -20,27 +20,35 @@ public class Controller {
     private BorderPane mainBorderPane;
 
     public void initialize() {
+        //everytime, there is a change in your table, it will change in GUI
         myTable.setItems(ContactData.getInstance().getContacts());
     }
 
+    //Method used to add contact to our table
     @FXML
     public void addContactHandle() {
+        //create and setup new dialog windows
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainBorderPane.getScene().getWindow());
         dialog.setTitle("Add new contact");
         dialog.setHeaderText("Use this windows to add new contact.");
 
+        //load fxml file for our dialog(dialogWindow.fxml)
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("dialogWindow.fxml"));
         try{
+            //set content of our dialog using fxml file we made for dialogs
             dialog.getDialogPane().setContent(fxmlLoader.load());
         } catch(IOException e) {
             System.out.println(e.getMessage());
         }
+        //add buttontypes to our dialog
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
+        //open dialog and wait for button to be clicked.
         Optional<ButtonType> result = dialog.showAndWait();
+        //is there is result and it was button OK then we create instance of dialog controller and addContact to our list
         if (result.isPresent() && result.get() == ButtonType.OK) {
             DialogController dialogController = fxmlLoader.getController();
             dialogController.addContact();
@@ -48,6 +56,7 @@ public class Controller {
 
     }
 
+    //used to edit contact, works similiar to our addContactHandle but will actually edit selected contact instead of adding new
     @FXML
     public void editContactHandle(ActionEvent actionEvent) {
         Contact selectedContact = myTable.getSelectionModel().getSelectedItem();
@@ -84,8 +93,10 @@ public class Controller {
 
     }
 
+    //used to delete selected contact
     @FXML
     public void deleteContactHandle(ActionEvent actionEvent) {
+        //if we didnt select any contact to be deleted, the alert will pop up saying you should choose contact
         Contact selectedContact = myTable.getSelectionModel().getSelectedItem();
         if(selectedContact == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -96,6 +107,7 @@ public class Controller {
             return;
         }
 
+        //if contact was chosen, we will delete it after user click on the OK button
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete contact?");
         alert.setHeaderText(null);
@@ -106,6 +118,7 @@ public class Controller {
         }
     }
 
+    //used to exit program safely
     @FXML
     public void exitHandle() {
         Platform.exit();

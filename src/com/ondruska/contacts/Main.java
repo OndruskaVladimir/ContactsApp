@@ -21,6 +21,7 @@ public class Main extends Application {
         launch(args);
     }
 
+    //when the app starts, we load contacts from our XML file
     @Override
     public void init() {
         try{
@@ -30,6 +31,7 @@ public class Main extends Application {
         }
     }
 
+    //when the app closes, we save contacts to our XML file
     @Override
     public void stop() {
         try{

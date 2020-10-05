@@ -2,7 +2,9 @@ package com.ondruska.contacts;
 
 import javafx.beans.property.SimpleStringProperty;
 
+//class used to create contact
 public class Contact {
+    //using SimpleStringProperty to fill the TableView in mainWindow
     private final SimpleStringProperty firstName = new SimpleStringProperty("");
     private final SimpleStringProperty lastName = new SimpleStringProperty("");
     private final SimpleStringProperty phoneNumber = new SimpleStringProperty("");

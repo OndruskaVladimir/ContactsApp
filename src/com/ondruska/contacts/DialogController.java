@@ -14,6 +14,8 @@ public class DialogController {
     @FXML
     private TextField notesDialog;
 
+    //used to add contacts using textFields in our dialogWindow. If any of the fields is not filled
+    //then we will not create new contact.
     public void addContact() {
         String firstName = firstNameDialog.getText().trim();
         String lastName = lastNameDialog.getText().trim();
@@ -32,6 +34,7 @@ public class DialogController {
         }
     }
 
+    //used to fill textFields in edit dialog based on inputted contact
     public void fillEditForm(Contact contact) {
         firstNameDialog.setText(contact.getFirstName());
         lastNameDialog.setText(contact.getLastName());
@@ -39,6 +42,7 @@ public class DialogController {
         notesDialog.setText(contact.getNotes());
     }
 
+    //update oldContact with info from dialog if all the fields are filled
     public void updateContact(Contact oldContact) {
         String firstName = firstNameDialog.getText().trim();
         String lastName = lastNameDialog.getText().trim();

@@ -19,29 +19,37 @@ public class ContactData {
     private static final String PHONE_NUMBER = "phone_number";
     private static final String NOTES = "notes";
 
+    //list of contacts
     private ObservableList<Contact> contacts;
+    //instance of singleton class
     private static final ContactData instance = new ContactData();
 
+    //constructor is private, which means that it is impossible to create instances(Singleton class)
     private ContactData() {
         contacts = FXCollections.observableArrayList();
     }
 
+    //method to add contact to our list contacts
     public void addContact(Contact contact) {
         this.contacts.add(contact);
     }
 
+    //delete contact from our list contacts
     public void deleteContact(Contact contact) {
         this.contacts.remove(contact);
     }
 
+    //getter for out contacts list
     public ObservableList<Contact> getContacts() {
         return contacts;
     }
 
+    //method used to get instance of Singleton class
     public static ContactData getInstance() {
         return instance;
     }
 
+    //method used to load contacts from xml file
     public void loadContacts() {
         try {
             // First, create a new XMLInputFactory
@@ -116,6 +124,7 @@ public class ContactData {
         }
     }
 
+    //methhod used to save contacts to xml file
     public void saveContacts() {
 
         try {
@@ -193,6 +202,7 @@ public class ContactData {
         eventWriter.add(end);
     }
 
+    //method used to update our contact list(editing contacts)
     public void updateContact(Contact oldContact, Contact newContact) {
         for (int i = 0; i < this.contacts.size(); i++) {
             if (this.contacts.get(i).equals(oldContact)) {
