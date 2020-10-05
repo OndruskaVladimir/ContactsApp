@@ -6,4 +6,10 @@
 	<phone_number>0123456789</phone_number>
 	<notes>this is my contact</notes>
 </contact>
+<contact>
+	<first_name>Peter</first_name>
+	<last_name>Ondruska</last_name>
+	<phone_number>0907233687</phone_number>
+	<notes>Father</notes>
+</contact>
 </contacts>
