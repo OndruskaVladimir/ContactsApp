@@ -1,6 +1,7 @@
 package com.ondruska.contacts;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 public class DialogController {
@@ -19,8 +20,16 @@ public class DialogController {
         String phoneNumber = phoneNumberDialog.getText().trim();
         String notes = notesDialog.getText().trim();
 
-        Contact newContact = new Contact(firstName, lastName, phoneNumber, notes);
-        ContactData.getInstance().addContact(newContact);
+        if((firstName.isEmpty()) || (lastName.isEmpty()) || (phoneNumber.isEmpty()) || (notes.isEmpty())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Missing information");
+            alert.setHeaderText(null);
+            alert.setContentText("Contact was not added. You have to fill all text fields.");
+            alert.show();
+        } else {
+            Contact newContact = new Contact(firstName, lastName, phoneNumber, notes);
+            ContactData.getInstance().addContact(newContact);
+        }
     }
 
     public void fillEditForm(Contact contact) {
@@ -36,7 +45,15 @@ public class DialogController {
         String phoneNumber = phoneNumberDialog.getText().trim();
         String notes = notesDialog.getText().trim();
 
-        Contact newContact = new Contact(firstName, lastName, phoneNumber, notes);
-        ContactData.getInstance().updateContact(oldContact, newContact);
+        if((firstName.isEmpty()) || (lastName.isEmpty()) || (phoneNumber.isEmpty()) || (notes.isEmpty())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Missing information");
+            alert.setHeaderText(null);
+            alert.setContentText("Contact was not updated. You have to fill all text fields.");
+            alert.show();
+        } else {
+            Contact newContact = new Contact(firstName, lastName, phoneNumber, notes);
+            ContactData.getInstance().updateContact(oldContact, newContact);
+        }
     }
 }

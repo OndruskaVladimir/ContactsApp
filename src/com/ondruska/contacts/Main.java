@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Contacts");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
@@ -22,7 +22,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void init() throws Exception {
+    public void init() {
         try{
             ContactData.getInstance().loadContacts();
         } catch(Exception e) {
@@ -31,7 +31,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         try{
             ContactData.getInstance().saveContacts();
         } catch(Exception e) {
