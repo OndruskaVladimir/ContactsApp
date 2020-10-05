@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.layout.GridPane?>
+<DialogPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ondruska.contacts.DialogController">
+        <content>
+            <GridPane>
+                <Label text="First name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="firstNameDialog" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Last name" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="lastNameDialog" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Phone number" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="phoneNumberDialog" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Notes" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="notesDialog" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+        </content>
+</DialogPane>
